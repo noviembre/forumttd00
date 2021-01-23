@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
-class ThreadTest extends TestCase
+class ReadThreadTest extends TestCase
 {
 
     use DatabaseMigrations;
