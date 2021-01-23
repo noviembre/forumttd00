@@ -18,8 +18,8 @@ class ParticipatedInForumTest extends TestCase
 
         $reply = factory('App\Reply')->create();
 
-        $this->post('/threads/' . $thread->id . '/replies', $reply->toArray());
+        $this->post($thread->path() . '/replies', $reply->toArray());
 
-//        $this->get($thread->path())->assertSee($reply->body);
+        $this->get($thread->path())->assertSee($reply->body);
     }
 }
