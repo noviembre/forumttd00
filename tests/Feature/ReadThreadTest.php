@@ -21,14 +21,26 @@ class ReadThreadTest extends TestCase
     public function a_user_can_view_all_threads()
     {
 
-        $response = $this->get('/threads');
-        $response->assertSee($this->thread->title);
+        $response = $this->get('/threads')
+        ->assertSee($this->thread->title);
     }
 
     /** @test */
     public function a_user_can_view_a_single_thread()
     {
-        $response = $this->get('/threads/' . $this->thread->id);
-        $response->assertSee($this->thread->title);
+        $this->get('/threads/' . $this->thread->id)
+            ->assertSee($this->thread->title);
+    }
+
+    /** @test */
+    public function a_user_can_read_replies_that_are_associated_with_a_thread()
+    {
+        $reply = factory('App\Reply')
+            ->create(['thread_id' => $this->thread->id]);
+
+        // When we visit a thread page
+        $this->get('/threads/' . $this->thread->id)
+            ->assertSee($reply->body);
+
     }
 }
