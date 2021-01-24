@@ -26,8 +26,6 @@ class ParticipatedInForumTest extends TestCase
 
         $reply = make('App\Reply');
 
-        dd($thread->path().'/replies');
-
         $this->post($thread->path() . '/replies', $reply->toArray());
 
         $this->get($thread->path())->assertSee($reply->body);
