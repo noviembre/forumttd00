@@ -22,7 +22,7 @@ class CreateThreadsTest extends TestCase
             ->assertRedirect('/login');
     }
 
-    
+
 
     /** @test */
     public function an_authenticated_user_can_create_new_forum_threads()
