@@ -12,7 +12,9 @@ class Thread extends Model
 
     public function path()
     {
-        return '/threads/' . $this->id;
+        #--- this method works with a_thread_can_make_a_string_path
+        # (Thread.ft.Test 1/2)
+        return "/threads/{$this->channel->slug}/{$this->id}";
     }
 
     public function replies()
