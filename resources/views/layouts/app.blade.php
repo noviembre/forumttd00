@@ -35,6 +35,19 @@
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="/threads">All Threads</a>
+
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                Channels <span class="caret"></span>
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                @foreach(App\Channel::all() as $channel)
+                                    <a class="dropdown-item" href="/threads/{{ $channel->slug }}">
+                                        {{ $channel->name }}
+                                    </a>
+                                @endforeach
+                            </div>
                         </li>
                     </ul>
 
