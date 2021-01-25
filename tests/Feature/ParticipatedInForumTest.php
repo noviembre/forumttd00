@@ -14,7 +14,7 @@ class ParticipatedInForumTest extends TestCase
     public function an_authenticated_users_may_not_add_replies()
     {
         $this->withExceptionHandling()
-            ->post('/threads/some-channel/1/replies',[])
+            ->post('/threads/some-channel/1/replies', [])
             ->assertRedirect('/login');
     }
 
@@ -29,5 +29,17 @@ class ParticipatedInForumTest extends TestCase
         $this->post($thread->path() . '/replies', $reply->toArray());
 
         $this->get($thread->path())->assertSee($reply->body);
+    }
+
+    /** @test */
+    public function a_reply_requires_a_body()
+    {
+        $this->withExceptionHandling()->signIn();
+
+        $thread = create('App\Thread');
+        $reply = make('App\Reply', [ 'body' => null ]);
+
+        $this->post($thread->path() . '/replies', $reply->toArray())
+            ->assertSessionHasErrors('body');
     }
 }
