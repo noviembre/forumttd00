@@ -23,7 +23,6 @@ class CreateThreadsTest extends TestCase
     }
 
 
-
     /** @test */
     public function an_authenticated_user_can_create_new_forum_threads()
     {
@@ -33,15 +32,26 @@ class CreateThreadsTest extends TestCase
         // when we hit the endpoint to createa new thread
         $thread = make('App\Thread');
 
-        $this->post('/threads', $thread->toArray());
-
-        dd($thread->path());
+        $response = $this->post('/threads', $thread->toArray());
 
         // then we visit the thread path and
         // We should see the new thread
-        $this->get($thread->path())
+        $this->get($response->headers->get('Location'))
             ->assertSee($thread->title)
             ->assertSee($thread->body);
+
+    }
+
+    /** @test */
+    public function a_thread_requires_a_title()
+    {
+        $this->signIn();
+        $thread = make('App\Thread', [ 'title' => null ]);
+
+        dd($thread);
+
+        $this->post('/thread', $thread)
+            ->assertSessionHasErrors('title');
 
     }
 }
