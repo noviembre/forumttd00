@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Channel;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -24,6 +25,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \View::share('channels', \App\Channel::all());
+        /*
+        |--------------------------------------------------------------------------
+        | Sharing Threads List view with * project
+        |--------------------------------------------------------------------------
+        |se regreso a este codigo pq, al momento de migrar ocasionaba un error.
+        */
+        \View::composer('*', function ($view){
+            $view->with('channels', Channel::all());
+        });
     }
 }
