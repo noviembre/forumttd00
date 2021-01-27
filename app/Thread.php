@@ -9,6 +9,19 @@ class Thread extends Model
 
     protected $guarded = [];
 
+    /**
+     * Boot the model.
+     */
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('replyCount', function ($builder)
+        {
+            $builder->withCount('replies');
+        });
+
+    }
 
     public function path()
     {
@@ -41,7 +54,7 @@ class Thread extends Model
     /**
      * Apply all relevant thread filters.
      *
-     * @param  Builder       $query
+     * @param  Builder $query
      * @param  ThreadFilters $filters
      * @return Builder
      */

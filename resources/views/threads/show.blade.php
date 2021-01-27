@@ -51,7 +51,7 @@
                             {{$thread->created_at->diffForHumans()}}
                             by: <a href="#">{{ $thread->creator->name }}</a>,
                             and currently has
-                            {{ $thread->replies->count() }} comments.
+                            {{ $thread->replies_count }} comments.
 
                         </p>
 
