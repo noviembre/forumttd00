@@ -25,7 +25,8 @@ class ThreadsController extends Controller
     public function index(Channel $channel, ThreadFilters $filters)
     {
         $threads = $this->getThreads($channel, $filters);
-        if (request()->wantsJson()){
+        if ( request()->wantsJson() )
+        {
             return $threads;
         }
 
@@ -113,7 +114,11 @@ class ThreadsController extends Controller
     {
 
         $thread->delete();
-        return response([],204);
+        if ( request()->wantsJson() )
+        {
+            return response([], 204);
+        }
+        return redirect('/threads');
     }
 
     /**
