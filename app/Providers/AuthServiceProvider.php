@@ -7,6 +7,7 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 
 class AuthServiceProvider extends ServiceProvider
 {
+
     /**
      * The policy mappings for the application.
      *
@@ -25,6 +26,18 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        /*
+        |--------------------------------------------------------------------------
+        | If you uncomment that code you'll be able to delete any thread.
+        |--------------------------------------------------------------------------
+        |
+        */
+
+//        Gate::before(function ($user)
+//        {
+//            if ( $user->name === 'Manu' ){
+//                return true;
+//            }
+//        });
     }
 }
