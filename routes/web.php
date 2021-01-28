@@ -28,3 +28,6 @@ Route::post('/threads/{channel}/{thread}/replies','RepliesController@store');
 
 #--------------- FAVORITES -------------------
 Route::post('/replies/{reply}/favorites', 'FavoritesController@store');
+
+#--------------  User Profile  ---------------
+Route::get('/profiles/{user}','ProfilesController@show')->name('profile');
