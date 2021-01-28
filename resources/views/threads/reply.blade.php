@@ -1,11 +1,25 @@
 <div class="card">
 
     <div class="card-header">
-        <a href="#">
-            {{ $reply->owner->name }}
-        </a>
+        <div class="level">
+            <h5 class="flex">
+                <a href="#">
+                    {{ $reply->owner->name }}
+                </a>
+                said {{ $reply->created_at->diffForHumans() }}
+            </h5>
 
-        said {{ $reply->created_at->diffForHumans() }}
+            <div>
+            <form method="post" action="/replies/{{$reply->id}}/favorites">
+                @csrf
+                <button type="submit" class="btn btn-secondary btn-sm" {{ $reply->isFavorited() ? 'disabled' : '' }}>
+                    {{ $reply->favorites()->count() }}
+                    {{ str_plural('Favorite', $reply->favorites()->count())  }}
+                </button>
+            </form>
+
+        </div>
+        </div>
 
     </div>
     <div class="card-body">
