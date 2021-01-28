@@ -59,7 +59,7 @@ class CreateThreadsTest extends TestCase
     /** @test */
     public function a_thread_requires_a_valid_channel()
     {
-        factory('App\Channel',2)->create();
+        factory('App\Channel', 2)->create();
 
         $this->publishThread([ 'channel_id' => null ])
             ->assertSessionHasErrors('channel_id');
@@ -68,6 +68,22 @@ class CreateThreadsTest extends TestCase
             ->assertSessionHasErrors('channel_id');
 
     }
+
+    /** @test */
+    public function a_thread_can_be_deleted()
+    {
+        $this->signIn();
+
+        $thread = create('App\Thread');
+        $reply = create('App\Reply', [ 'thread_id' => $thread->id ]);
+
+        $response = $this->json('DELETE', $thread->path());
+
+        $response->assertStatus(204);
+        $this->assertDatabaseMissing('threads', [ 'id' => $thread->id ]);
+        $this->assertDatabaseMissing('replies', [ 'id' => $reply->id ]);
+    }
+
 
     public function publishThread($overrides = [])
     {
