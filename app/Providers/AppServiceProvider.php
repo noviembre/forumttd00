@@ -16,7 +16,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if ($this->app->isLocal()){
+        if ( $this->app->isLocal() )
+        {
             $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
         }
     }
@@ -34,11 +35,10 @@ class AppServiceProvider extends ServiceProvider
         |--------------------------------------------------------------------------
         |se regreso a este codigo pq, al momento de migrar ocasionaba un error.
         */
-        \View::composer('*', function ($view){
-            $channels = \Cache::rememberForever('channels',function (){
-                return Channel::all();
-            });
-            $view->with('channels', $channels);
+        \View::composer('*', function ($view)
+        {
+            $view->with('channels', Channel::all());
+
         });
     }
 }
