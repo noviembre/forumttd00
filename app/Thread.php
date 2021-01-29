@@ -29,11 +29,6 @@ class Thread extends Model
             $thread->replies()->delete();
         });
 
-        static::created(function ($thread)
-        {
-            $thread->recordActivity('created');
-        });
-
     }
 
     public function path()
