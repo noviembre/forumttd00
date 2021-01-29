@@ -8,7 +8,7 @@ trait RecordsActivity
 
     protected static function bootRecordsActivity()
     {
-        foreach (static::getRecordEvents() as $event)
+        foreach (static::getActivitiesToRecord() as $event)
         {
             static::$event(function ($model) use ($event)
             {
@@ -18,7 +18,7 @@ trait RecordsActivity
 
     }
 
-    protected static function getRecordEvents()
+    protected static function getActivitiesToRecord()
     {
         return [ 'created' ];
     }
