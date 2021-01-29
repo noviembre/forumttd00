@@ -18,6 +18,10 @@ trait RecordsActivity
             });
         }
 
+        /*
+         *  When a thread is deleting
+         *  I want to delete its activity al well.
+         */
         static::deleting(function ($model)
         {
             $model->activity()->delete();

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use function foo\func;
 use Illuminate\Database\Eloquent\Model;
 
 class Thread extends Model
@@ -24,9 +25,15 @@ class Thread extends Model
             $builder->withCount('replies');
         });
 
+        /*
+         *  When a thread is deleting
+         *  I want to delete its replies in the process.
+         */
         static::deleting(function ($thread)
         {
-            $thread->replies()->delete();
+            $thread->replies->each(function ($reply){
+                $reply->delete();
+            });
         });
 
     }
