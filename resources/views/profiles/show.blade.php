@@ -7,7 +7,6 @@
                 <div class="card">
                     <div class="card-header">
                         <h2>{{ $profileUser->name }}</h2>
-                        <small>Since: {{ $profileUser->created_at->diffForHumans() }}</small>
                     </div>
                 </div>
 
@@ -17,9 +16,6 @@
                     @include("profiles.activities.{$record->type}", ['activity' => $record])
                     @endforeach
                 @endforeach
-
-                {{--{{$threads->links()}}--}}
-
 
             </div>
         </div>
