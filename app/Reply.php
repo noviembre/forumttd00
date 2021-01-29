@@ -23,4 +23,10 @@ class Reply extends Model
     }
 
 
+    public function thread()
+    {
+        return $this->belongsTo(Thread::class);
+    }
+
+
 }

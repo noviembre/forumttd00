@@ -2,7 +2,10 @@
     <div class="card-header">
         <div class="level">
             <span class="flex">
-                {{ $profileUser->name }} published to thread
+                {{ $profileUser->name }} published
+                <a href="{{$activity->subject->path()}}">
+                    {{$activity->subject->title}}
+                </a>
             </span>
         </div>
     </div>
