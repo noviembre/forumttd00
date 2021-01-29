@@ -8,10 +8,19 @@ trait RecordsActivity
 
     protected static function bootRecordsActivity()
     {
-        static::created(function ($thread)
+        foreach (static::getRecordEvents() as $event)
         {
-            $thread->recordActivity('created');
-        });
+            static::$event(function ($model) use ($event)
+            {
+                $model->recordActivity($event);
+            });
+        }
+
+    }
+
+    protected static function getRecordEvents()
+    {
+        return [ 'created' ];
     }
 
     public function recordActivity($event)
@@ -24,7 +33,7 @@ trait RecordsActivity
 
     public function activity()
     {
-        return $this->morphMany('App\Activity','subject');
+        return $this->morphMany('App\Activity', 'subject');
     }
 
 
