@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Thread extends Model
 {
 
+    use RecordsActivity;
+
     protected $guarded = [];
     protected $with = [ 'creator', 'channel' ];
 
@@ -29,12 +31,7 @@ class Thread extends Model
 
         static::created(function ($thread)
         {
-            Activity::create([
-                'user_id'      => auth()->id(),
-                'type'         => 'created_thread',
-                'subject_id'   => $thread->id,
-                'subject_type' => 'App\Thread',
-            ]);
+            $thread->recordActivity('created');
         });
 
     }
