@@ -31,7 +31,7 @@
         <main class="py-4">
             @yield('content')
 
-            <flash message="Temporary message"></flash>
+            <flash message="{{ session('flash') }}"></flash>
         </main>
     </div>
 </body>

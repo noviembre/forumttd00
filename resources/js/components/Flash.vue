@@ -1,5 +1,5 @@
 <template>
-    <div class="alert alert-warning alert-flash">
+    <div class="alert alert-warning alert-flash" role="alert" v-show="show">
       <strong>Success!</strong>
         {{ body}}
     </div>
@@ -7,9 +7,17 @@
 
 <script>
     export default {
+        props: ['message'],
         data() {
             return {
-                body: 'Temp for now'
+                body: '',
+                show: false
+            }
+        },
+        created(){
+            if(this.message){
+                this.body = this.message;
+                    this.show = true;
             }
         }
     }

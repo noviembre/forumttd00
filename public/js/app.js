@@ -1705,10 +1705,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['message'],
   data: function data() {
     return {
-      body: 'Temp for now'
+      body: '',
+      show: false
     };
+  },
+  created: function created() {
+    if (this.message) {
+      this.body = this.message;
+      this.show = true;
+    }
   }
 });
 
@@ -37985,10 +37993,20 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "alert alert-warning alert-flash" }, [
-    _c("strong", [_vm._v("Success!")]),
-    _vm._v("\n    " + _vm._s(_vm.body) + "\n")
-  ])
+  return _c(
+    "div",
+    {
+      directives: [
+        { name: "show", rawName: "v-show", value: _vm.show, expression: "show" }
+      ],
+      staticClass: "alert alert-warning alert-flash",
+      attrs: { role: "alert" }
+    },
+    [
+      _c("strong", [_vm._v("Success!")]),
+      _vm._v("\n    " + _vm._s(_vm.body) + "\n")
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
