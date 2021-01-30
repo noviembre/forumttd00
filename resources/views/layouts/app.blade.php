@@ -22,7 +22,7 @@
         body {padding-bottom: 100px;}
         .level {display: flex;align-items: center;}
         .flex {flex:1;}
-        [v-clock]{ display: none;}
+        [v-cloak]{ display: none;}
     </style>
 </head>
 <body>
