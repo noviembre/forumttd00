@@ -32,7 +32,8 @@
             @yield('content')
 
         </main>
-        <flash message="temporal"></flash>
+        <flash message="{{ session('flash') }}"></flash>
     </div>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.18/vue.min.js"></script>
 </html>
