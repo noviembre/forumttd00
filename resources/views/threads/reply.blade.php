@@ -1,4 +1,4 @@
-<reply :attributes="{{$reply}}" inline-template>
+<reply :attributes="{{$reply}}" inline-template v-clock>
     <div id="reply-{{ $reply->id }}" class="card">
 
         <div class="card-header">
