@@ -41,7 +41,7 @@
         @can('update',$reply)
             <div class="card-footer level">
                 <button class="btn btn-info btn-sm mr-1" @click="editing = true">Edit</button>
-                <button class="btn btn-danger btn-sm mr-1" @click="destroy = true">Delete</button>
+                <button class="btn btn-danger btn-sm mr-1" @click="destroy">Delete</button>
 
 
             </div>
