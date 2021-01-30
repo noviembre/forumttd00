@@ -1751,10 +1751,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['attributes'],
   data: function data() {
     return {
-      editing: false
+      editing: false,
+      body: this.attributes.body
     };
+  },
+  methods: {
+    update: function update() {
+      axios.patch('/replies/' + this.attributes.id, {
+        body: this.body
+      });
+    }
   }
 });
 
