@@ -33,8 +33,8 @@
 
             </div>
 
-            <div v-else>
-                {{ $reply->body }}
+            <div v-else v-text="body">
+
             </div>
         </div>
 

@@ -70,6 +70,21 @@ class ParticipatedInForumTest extends TestCase
     }
 
     /** @test */
+    public function unauthorized_user_cannot_update_replies()
+    {
+        $this->withExceptionHandling();
+
+        $reply = create('App\Reply');
+
+        $this->patch("/replies/{$reply->id}")
+            ->assertRedirect('login');
+
+        $this->signIn()
+            ->patch("/replies/{$reply->id}")
+            ->assertStatus(403);
+    }
+
+    /** @test */
     public function authorized_users_can_update_replies()
     {
         $this->signIn();
@@ -79,4 +94,6 @@ class ParticipatedInForumTest extends TestCase
         $this->patch("/replies/{$reply->id}", [ 'body' => $updateReply ]);
         $this->assertDatabaseHas('replies', [ 'id' => $reply->id, 'body' => $updateReply ]);
     }
+
+
 }

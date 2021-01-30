@@ -1763,6 +1763,8 @@ __webpack_require__.r(__webpack_exports__);
       axios.patch('/replies/' + this.attributes.id, {
         body: this.body
       });
+      this.editing = false;
+      flash('Updated!');
     }
   }
 });
