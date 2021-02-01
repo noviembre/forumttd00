@@ -1708,13 +1708,13 @@ __webpack_require__.r(__webpack_exports__);
   props: ['reply'],
   data: function data() {
     return {
-      favoritesCount: this.reply.favoritesCount,
-      isFavorited: this.reply.isFavorited
+      contador: this.reply.favoritesCount,
+      active: this.reply.isFavorited
     };
   },
   computed: {
     classes: function classes() {
-      return ['btn', this.isFavorited ? 'btn-warning btn-sm' : 'btn-secondary btn-sm'];
+      return ['btn', this.active ? 'btn-warning btn-sm' : 'btn-secondary btn-sm'];
     },
     endpoint: function endpoint() {
       return '/replies/' + this.reply.id + '/favorites';
@@ -1722,17 +1722,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     toggle: function toggle() {
-      return this.isFavorited ? this.destroy() : this.create();
+      this.active ? this.destroy() : this.create();
     },
     create: function create() {
       axios.post(this.endpoint);
-      this.isFavorited = true;
-      this.favoritesCount++;
+      this.active = true;
+      this.contador++;
     },
     destroy: function destroy() {
       axios["delete"](this.endpoint);
-      this.isFavorited = false;
-      this.favoritesCount--;
+      this.active = false;
+      this.contador--;
     }
   }
 });
@@ -38114,7 +38114,7 @@ var render = function() {
     [
       _c("span", { staticClass: "fa fa-heart" }),
       _vm._v(" "),
-      _c("span", { domProps: { textContent: _vm._s(_vm.favoritesCount) } })
+      _c("span", { domProps: { textContent: _vm._s(_vm.contador) } })
     ]
   )
 }

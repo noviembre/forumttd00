@@ -1,7 +1,7 @@
 <template>
     <button type="submit" :class="classes" @click="toggle">
         <span class="fa fa-heart"></span>
-        <span v-text="favoritesCount"></span>
+        <span v-text="contador"></span>
     </button>
 </template>
 
@@ -11,14 +11,14 @@
 
         data(){
             return {
-                favoritesCount: this.reply.favoritesCount,
-                isFavorited: this.reply.isFavorited
+                contador: this.reply.favoritesCount,
+                active: this.reply.isFavorited
             }
         },
 
         computed: {
             classes(){
-                return ['btn', this.isFavorited ? 'btn-warning btn-sm' : 'btn-secondary btn-sm']
+                return ['btn', this.active ? 'btn-warning btn-sm' : 'btn-secondary btn-sm']
             },
 
             endpoint(){
@@ -29,19 +29,19 @@
 
         methods: {
             toggle(){
-                return this.isFavorited ? this.destroy() : this.create();
+                this.active ? this.destroy() : this.create();
             },
 
             create(){
                 axios.post(this.endpoint);
-                this.isFavorited = true;
-                this.favoritesCount++;
+                this.active = true;
+                this.contador++;
             },
 
             destroy(){
                 axios.delete(this.endpoint);
-                this.isFavorited = false;
-                this.favoritesCount--;
+                this.active = false;
+                this.contador--;
             }
         }
     }
