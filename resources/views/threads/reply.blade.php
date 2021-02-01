@@ -11,13 +11,7 @@
                 </h5>
 
                 <div>
-                    <favorite :reply="{{ $reply }}">
-
-                    </favorite>
-                    {{--<form method="post" action="/replies/{{$reply->id}}/favorites">--}}
-                        {{--@csrf--}}
-
-                    {{--</form>--}}
+                    <favorite :reply="{{ $reply }}"></favorite>
 
                 </div>
             </div>

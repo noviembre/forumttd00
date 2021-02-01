@@ -1715,19 +1715,24 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     classes: function classes() {
       return ['btn', this.isFavorited ? 'btn-warning btn-sm' : 'btn-secondary btn-sm'];
+    },
+    endpoint: function endpoint() {
+      return '/replies/' + this.reply.id + '/favorites';
     }
   },
   methods: {
     toggle: function toggle() {
-      if (this.isFavorited) {
-        axios["delete"]('/replies/' + this.reply.id + '/favorites');
-        this.isFavorited = false;
-        this.favoritesCount--;
-      } else {
-        axios.post('/replies/' + this.reply.id + '/favorites');
-        this.isFavorited = true;
-        this.favoritesCount++;
-      }
+      return this.isFavorited ? this.destroy() : this.create();
+    },
+    create: function create() {
+      axios.post(this.endpoint);
+      this.isFavorited = true;
+      this.favoritesCount++;
+    },
+    destroy: function destroy() {
+      axios["delete"](this.endpoint);
+      this.isFavorited = false;
+      this.favoritesCount--;
     }
   }
 });
