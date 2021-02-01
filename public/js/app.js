@@ -1709,7 +1709,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       favoritesCount: this.reply.favoritesCount,
-      isFavorited: false
+      isFavorited: this.reply.isFavorited
     };
   },
   computed: {
@@ -1721,6 +1721,8 @@ __webpack_require__.r(__webpack_exports__);
     toggle: function toggle() {
       if (this.isFavorited) {
         axios["delete"]('/replies/' + this.reply.id + '/favorites');
+        this.isFavorited = false;
+        this.favoritesCount--;
       } else {
         axios.post('/replies/' + this.reply.id + '/favorites');
         this.isFavorited = true;

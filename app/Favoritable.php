@@ -23,6 +23,10 @@ trait Favoritable
 
     }
 
+    public function getIsFavoritedAttribute()
+    {
+        return $this->isFavorited();
+    }
 
     /**
      * Determine if the current reply has been favorited.
