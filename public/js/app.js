@@ -1708,8 +1708,14 @@ __webpack_require__.r(__webpack_exports__);
   props: ['reply'],
   data: function data() {
     return {
-      favoritesCount: this.reply.favoritesCount
+      favoritesCount: this.reply.favoritesCount,
+      isFavorited: true
     };
+  },
+  computed: {
+    classes: function classes() {
+      return ['btn', this.isFavorited ? 'btn-warning btn-sm' : 'btn-secondary btn-sm'];
+    }
   },
   methods: {
     toggle: function toggle() {
@@ -38092,7 +38098,7 @@ var render = function() {
   return _c(
     "button",
     {
-      staticClass: "btn btn-secondary btn-sm",
+      class: _vm.classes,
       attrs: { type: "submit" },
       on: { click: _vm.toggle }
     },

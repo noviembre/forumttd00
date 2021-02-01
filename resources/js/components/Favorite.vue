@@ -1,5 +1,5 @@
 <template>
-    <button type="submit" class="btn btn-secondary btn-sm" @click="toggle">
+    <button type="submit" :class="classes" @click="toggle">
         <span class="fa fa-heart"></span>
         <span v-text="favoritesCount"></span>
     </button>
@@ -12,12 +12,19 @@
         data(){
             return {
                 favoritesCount: this.reply.favoritesCount,
+                isFavorited:true
+            }
+        },
+
+        computed: {
+            classes(){
+                return ['btn', this.isFavorited ? 'btn-warning btn-sm' : 'btn-secondary btn-sm']
             }
         },
 
         methods: {
             toggle(){
-                if(this.isFavorited){
+                if (this.isFavorited) {
                     axios.delete('/replies/' + this.reply.id + '/favorites')
                 } else {
                     axios.post('/replies/' + this.reply.id + '/favorites')
