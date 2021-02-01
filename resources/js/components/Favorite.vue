@@ -12,7 +12,7 @@
         data(){
             return {
                 favoritesCount: this.reply.favoritesCount,
-                isFavorited:true
+                isFavorited:false
             }
         },
 
@@ -27,7 +27,9 @@
                 if (this.isFavorited) {
                     axios.delete('/replies/' + this.reply.id + '/favorites')
                 } else {
-                    axios.post('/replies/' + this.reply.id + '/favorites')
+                    axios.post('/replies/' + this.reply.id + '/favorites');
+                    this.isFavorited = true;
+                    this.favoritesCount++;
                 }
             }
         }

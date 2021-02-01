@@ -15,6 +15,15 @@ trait Favoritable
         }
     }
 
+    public function unfavorite()
+    {
+        $attributes = [ 'user_id' => auth()->id() ];
+
+        $this->favorites()->where($attributes)->delete();
+
+    }
+
+
     /**
      * Determine if the current reply has been favorited.
      *
