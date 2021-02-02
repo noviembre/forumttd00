@@ -37,6 +37,23 @@ if (token) {
 } else {
     console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
+
+// Authorize opens
+window.Vue = require('vue');
+
+Vue.prototype.authorize = function (handler){
+    let user = window.App.user;
+    return user ? handler(user) : false;
+};
+
+// Authorize closes
+// Vue.prototype.signedIn = window.App.signedIn;
+
+// window.Vue.prototype.authorize = function (handler) {
+//     let user = window.App.user;
+//
+//     return user ? handler(user) : false;
+// };
 window.events = new Vue();
 
 window.flash = function(message){
