@@ -21,20 +21,21 @@
         </div>
 
 
-        <!--<p class="text-center">Please-->
-        <!--<a href="{{ route('login') }}">Sign in</a>-->
-        <!--to participate in this discussion-->
-        <!--</p>-->
+        <p class="text-center" v-else>Please
+        <a href="/login">Sign in</a>
+        to participate in this discussion
+        </p>
 
     </div>
 </template>
 
 <script>
     export default{
+        props: ['endpoint'],
         data(){
             return {
                 body: '',
-                endpoint: '/threads/et/1/replies'
+
             };
         },
 

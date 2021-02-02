@@ -4,7 +4,7 @@
             <reply :data="reply" @deleted="remove(index)"></reply>
 
         </div>
-        <new-reply @created="add"></new-reply>
+        <new-reply :endpoint="endpoint" @created="add"></new-reply>
     </div>
 
 </template>
@@ -21,6 +21,7 @@
         data(){
             return {
                 items: this.data,
+                endpoint:location.pathname + '/replies',
             }
         },
 
