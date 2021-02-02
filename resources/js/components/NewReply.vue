@@ -1,6 +1,7 @@
 <template>
     <div>
-        <div class="form-group">
+        <div v-if="signedIn">
+            <div class="form-group">
         <textarea
                 name="body"
                 id="body"
@@ -9,12 +10,15 @@
                 class="form-control"
                 required
                 v-model="body"></textarea>
-        </div>
+            </div>
 
-        <button
+
+
+            <button
                 type="submit"
                 class="btn btn-primary"
                 @click="addReply">Post</button>
+        </div>
 
 
         <!--<p class="text-center">Please-->
@@ -32,6 +36,12 @@
                 body: '',
                 endpoint: '/threads/et/1/replies'
             };
+        },
+
+        computed:{
+            signedIn(){
+                return window.App.signedIn;
+            }
         },
 
         methods: {
