@@ -30,7 +30,7 @@
         data(){
             return {
                 body: '',
-                endpoint: ''
+                endpoint: '/threads/et/1/replies'
             };
         },
 
