@@ -9,7 +9,7 @@
                        v-text="data.owner.name">
 
                     </a>
-                    said {{ data.created_at}}
+                    said <span v-text="ago"></span>
                 </h5>
 
 
@@ -50,6 +50,7 @@
 
 <script>
     import Favorite from './Favorite.vue';
+    import moment from 'moment';
 
     export default {
         props: ['data'],
@@ -65,6 +66,9 @@
         },
 
         computed: {
+            ago(){
+                return moment(this.data.created_at).fromNow() + '...';
+            },
             signIn(){
                 return window.App.signIn;
             },
