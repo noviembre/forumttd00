@@ -22,7 +22,7 @@
 <script>
     export default{
         props: ['dataSet'],
-        
+
         data() {
             return {
                 page: 1,
@@ -31,9 +31,21 @@
             }
         },
 
+        watch: {
+            dataSet() {
+                this.page = this.dataSet.current_page;
+                this.prevUrl = this.dataSet.prev_page_url;
+                this.nextUrl = this.dataSet.next_page_url;
+            },
+
+//            page() {
+//                this.broadcast().updateUrl();
+//            }
+        },
+
         computed: {
             shouldPaginate() {
-                return this.prevUrl || this.nextUrl;
+                return !! this.prevUrl || !! this.nextUrl;
             }
         },
 
