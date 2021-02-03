@@ -13,15 +13,19 @@
 
     import Reply from './Reply.vue';
     import NewReply from './NewReply.vue';
+    import collection from '../mixins/collection';
+
     export default{
 
         components: {Reply, NewReply},
+
+        mixins: [collection],
+
 
         data(){
 
             return {
                 dataSet: false,
-                items: [],
                 endpoint: location.pathname + '/replies',
             }
         },
@@ -43,18 +47,8 @@
             refresh({data}){
                 this.dataSet = data;
                 this.items = data.data;
-            },
-            add(reply){
-                this.items.push(reply);
-                this.$emit('added');
-            },
-
-            remove(index){
-                this.items.splice(index, 1);
-                this.$emit('removed');
-                flash('Reply was deleted');
-
             }
+
         }
     }
 </script>
