@@ -5,8 +5,8 @@
 
         </div>
 
-        <paginator :dataSet="dataSet" @updated="fetch"></paginator>
-        <new-reply :endpoint="endpoint" @created="add"></new-reply>
+        <paginator :dataSet="dataSet" @changed="fetch"></paginator>
+        <new-reply @created="add"></new-reply>
     </div>
 
 </template>
@@ -27,8 +27,7 @@
         data(){
 
             return {
-                dataSet: false,
-                endpoint: location.pathname + '/replies',
+                dataSet: false
             }
         },
 
@@ -40,7 +39,7 @@
 
             fetch(page){
                 axios.get(this.url(page)).then(this.refresh);
-                
+
             },
             url(page){
                 if (!page) {
