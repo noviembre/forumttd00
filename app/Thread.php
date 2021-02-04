@@ -92,9 +92,23 @@ class Thread extends Model
         ]);
     }
 
+    /**
+     * Unsubscribe a user from the current thread.
+     *
+     * @param int|null $userId
+     */
+    public function unsubscribe($userId = null)
+    {
+        $this->subscriptions()
+            ->where('user_id', $userId ?: auth()->id())
+            ->delete();
+    }
+
     public function subscriptions()
     {
         return $this->hasMany(ThreadSubscription::class);
     }
+
+
 
 }
