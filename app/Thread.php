@@ -48,6 +48,7 @@ class Thread extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
     /*
      * Add a reply to a Thread
      * @param array $reply
@@ -75,6 +76,25 @@ class Thread extends Model
     public function scopeFilter($query, $filters)
     {
         return $filters->apply($query);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Subcriptions
+    |--------------------------------------------------------------------------
+    |
+    */
+
+    public function subscribe($userId = null)
+    {
+        $this->subscriptions()->create([
+            'user_id' => $userId ?: auth()->id()
+        ]);
+    }
+
+    public function subscriptions()
+    {
+        return $this->hasMany(ThreadSubscription::class);
     }
 
 }
