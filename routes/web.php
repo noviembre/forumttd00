@@ -50,3 +50,6 @@ Route::delete('/replies/{reply}/favorites', 'FavoritesController@destroy');
 
 #--------------  User Profile  ---------------
 Route::get('/profiles/{user}','ProfilesController@show')->name('profile');
+
+#-------------  Notifications  --------------
+Route::delete('/profiles/{user}/notifications/{notification}', 'UserNotificationsController@destroy');
