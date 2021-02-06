@@ -47,12 +47,12 @@ class NotificationsTest extends TestCase
 
 
         $user = auth()->user();
-        
+
         $this->assertCount(1, $user->unreadNotifications);
 
         $notificationId = $user->unreadNotifications->first()->id;
 
-        $this->delete("/profiles/". $user->name . "/notifications/{$notificationId}");
+        $this->delete("/profiles/{$user->name}/notifications/{$notificationId}");
 
 
         $this->assertCount(0, $user->fresh()->unreadNotifications);
