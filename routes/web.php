@@ -35,6 +35,10 @@ Route::delete('/replies/{reply}','RepliesController@destroy');
 #-----------  Thread Suscriptions
 Route::post('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController@store')
     ->middleware('auth');
+Route::delete('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController@destroy')
+    ->middleware('auth');
+
+
 #-----------  Update Replies  -----------------
 Route::patch('/replies/{reply}','RepliesController@update');
 
