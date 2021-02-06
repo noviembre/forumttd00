@@ -35,7 +35,7 @@ class NotificationsTest extends TestCase
     }
 
     /** @test */
-    function a_user_can_fetch_their_unread_notifications()
+    function a_user_can_mark_a_notification_as_read()
     {
         $this->signIn();
         $thread = create('App\Thread')->subscribe();
