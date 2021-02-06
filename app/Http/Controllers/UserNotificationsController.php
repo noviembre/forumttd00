@@ -28,4 +28,14 @@ class UserNotificationsController extends Controller
     {
         auth()->user()->notifications()->findOrFail($notificationId)->markAsRead();
     }
+
+    /**
+     * Fetch all unread notifications for the user.
+     *
+     * @return mixed
+     */
+    public function index()
+    {
+        return auth()->user()->unreadNotifications;
+    }
 }
