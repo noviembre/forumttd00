@@ -66,11 +66,7 @@ class Thread extends Model
         {
             return $sub->user_id != $reply->user_id;
         })
-            ->each(function ($sub) use ($reply)
-            {
-                $sub->user->notify(new ThreadWasUpdated($this, $reply));
-            });
-
+            ->each->notify($reply);
 
         return $reply;
     }
