@@ -1,8 +1,7 @@
 <?php
 
 namespace App;
-
-use function foo\func;
+use App\Notifications\ThreadWasUpdated;
 use Illuminate\Database\Eloquent\Model;
 
 class Thread extends Model
@@ -59,6 +58,15 @@ class Thread extends Model
     public function addReply($reply)
     {
         $reply = $this->replies()->create($reply);
+
+        // prepare notification for all subcribers
+
+        foreach ($this->subscriptions as $subscription){
+            $subscription->user->notify(new ThreadWasUpdated($this, $reply));
+        }
+
+
+        return $reply;
     }
 
 

@@ -11,7 +11,7 @@ class SubscribeToThreadsTest extends TestCase
     use DatabaseMigrations;
 
     /** @test */
-    public function a_user_can_subscribe_to_threads()
+    function a_user_can_subscribe_to_threads()
     {
         $this->signIn();
 
@@ -21,7 +21,14 @@ class SubscribeToThreadsTest extends TestCase
         // And the user subscribes to the thread...
         $this->post($thread->path() . '/subscriptions');
 
-        $this->assertCount(1, $thread->subscriptions);
+        // then each time a new reply is left..
+        $thread->addReply([
+            'user_id' => auth()->id(),
+            'body'    => 'some reply here'
+        ]);
+
+        $this->assertCount(1, auth()->user()->notifications);
+
     }
 
     /** @test */
