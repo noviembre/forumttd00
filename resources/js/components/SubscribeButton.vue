@@ -13,14 +13,15 @@
             }
         },
 
-        
+
 
         methods: {
             subscribe() {
+                axios[
+                    (this.active ? 'delete' : 'post')
+                    ](location.pathname + '/subscriptions');
 
-                axios.post(location.pathname + '/subscriptions');
-                this.active = true;
-                flash('subscribed');
+                this.active = ! this.active;
             }
         }
     }
