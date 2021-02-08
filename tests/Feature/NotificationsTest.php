@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Notifications\DatabaseNotification;
 use Tests\TestCase;
 
 class NotificationsTest extends TestCase
@@ -60,12 +61,7 @@ class NotificationsTest extends TestCase
     /** @test */
     function a_user_can_mark_a_notification_as_read()
     {
-        $thread = create('App\Thread')->subscribe();
-
-        $thread->addReply([
-            'user_id' => create('App\User')->id,
-            'body'    => 'some reply here',
-        ]);
+        create(DatabaseNotification::class);
 
 
         $user = auth()->user();
