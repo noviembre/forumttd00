@@ -60,10 +60,17 @@ class Thread extends Model
     public function addReply($reply)
     {
         $reply = $this->replies()->create($reply);
-        event(new ThreadHasNewReply($this, $reply));
-
+        $this->notifySubsCribers($reply);
 
         return $reply;
+    }
+
+    public function notifySubsCribers($reply)
+    {
+        $this->subscriptions->
+        where('user_id', '!=', $reply->user_id)
+            ->each
+            ->notify($reply);
     }
 
 
