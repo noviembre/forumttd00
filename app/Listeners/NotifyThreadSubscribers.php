@@ -8,16 +8,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 
 class NotifyThreadSubscribers
 {
-    /**
-     * Create the event listener.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
+    
     /**
      * Handle the event.
      *
@@ -26,6 +17,10 @@ class NotifyThreadSubscribers
      */
     public function handle(ThreadHasNewReply $event)
     {
-        //
+        // prepare notification for all subcribers
+        $event->thread->subscriptions->
+            where('user_id', '!=', $event->reply->user_id)
+            ->each
+            ->notify($event->reply);
     }
 }
