@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Reply;
+use App\Spam;
 use App\Thread;
 use Illuminate\Http\Request;
 
@@ -28,19 +29,18 @@ class RepliesController extends Controller
     /**
      * persist a new reply.
      *
-     * @param  $channelId
+     * @param $channelId
      * @param  \App\Thread $thread
+     * @param Spam $spam
      * @return \Illuminate\Http\Response
      */
 
-    public function store($channelId, Thread $thread)
+    public function store($channelId, Thread $thread, Spam $spam)
     {
         $this->validate(request(), [ 'body' => 'required' ]);
 
-        if ( stripos(request('body'), 'yahoo Customer support') !== false )
-        {
-            throw new \Exception('Your reply contains spam.');
-        }
+        $spam->detect(request('body'));
+
 
         $reply = $thread->addReply([
             'body'    => request('body'),
