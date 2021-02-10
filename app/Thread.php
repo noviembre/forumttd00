@@ -142,9 +142,9 @@ class Thread extends Model
             ->exists();
     }
 
-    public function hasUpdatesFor()
+    public function hasUpdatesFor($user)
     {
-        $key = auth()->user()->visitedThreadCacheKey($this);
+        $key = $user->visitedThreadCacheKey($this);
         return $this->updated_at > cache($key);
     }
 
