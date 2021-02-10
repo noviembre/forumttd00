@@ -37,7 +37,7 @@ class RepliesController extends Controller
     {
         $this->validate(request(), [ 'body' => 'required' ]);
 
-        if ( str_contains(request('body'), 'Yahoo Customer Support') )
+        if ( stripos(request('body'), 'yahoo Customer support') !== false )
         {
             throw new \Exception('Your reply contains spam.');
         }
