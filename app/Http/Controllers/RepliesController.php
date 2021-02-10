@@ -17,7 +17,7 @@ class RepliesController extends Controller
     /**
      * Fetch all relevant replies.
      *
-     * @param int    $channelId
+     * @param int $channelId
      * @param Thread $thread
      */
     public function index($channelId, Thread $thread)
@@ -36,6 +36,11 @@ class RepliesController extends Controller
     public function store($channelId, Thread $thread)
     {
         $this->validate(request(), [ 'body' => 'required' ]);
+
+        if ( str_contains(request('body'), 'Yahoo Customer Support') )
+        {
+            throw new \Exception('Your reply contains spam.');
+        }
 
         $reply = $thread->addReply([
             'body'    => request('body'),
