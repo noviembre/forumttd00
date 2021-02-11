@@ -47,17 +47,24 @@ class RepliesController extends Controller
             'user_id' => auth()->id()
         ]);
 
-        if ( request()->expectsJson() )
-        {
+        if ( request()->expectsJson() ) {
             return $reply->load('owner');
         }
 
         return back()->with('flash', 'Your reply has been left.');
     }
 
-    public function update(Reply $reply)
+    /**
+     * @param Reply $reply
+     * @param Spam $spam
+     */
+    public function update(Reply $reply, Spam $spam)
     {
         $this->authorize('update', $reply);
+        $this->validate(request(), [ 'body' => 'required' ]);
+
+        $spam->detect(request('body'));
+
         $reply->update(request([ 'body' ]));
 
     }
@@ -68,8 +75,7 @@ class RepliesController extends Controller
 
         $reply->delete();
 
-        if ( request()->expectsJson() )
-        {
+        if ( request()->expectsJson() ) {
             return response([ 'status' => 'Reply Deleted' ]);
         }
         return back();
