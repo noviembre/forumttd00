@@ -8,6 +8,7 @@ Class Spam
     public function detect($body)
     {
         $this->detectInvalidKeywords($body);
+        $this->detectKeyHeldDown($body);
 
         return false;
     }
@@ -18,11 +19,20 @@ Class Spam
             'Yahoo Customer Support'
         ];
 
-        foreach ($invalidKeywords as $keyword){
+        foreach ($invalidKeywords as $keyword)
+        {
             if ( stripos($body, $keyword) !== false )
             {
                 throw new \Exception('Your reply contains spam.');
             }
+        }
+    }
+
+    protected function detectKeyHeldDown($body)
+    {
+        if ( preg_match('/(.)\\1{4,}/', $body) )
+        {
+            throw new \Exception('Your reply contains spam.');
         }
     }
 }
