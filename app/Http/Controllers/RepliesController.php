@@ -52,14 +52,23 @@ class RepliesController extends Controller
         return $reply->load('owner');
     }
 
+
     /**
      * @param Reply $reply
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
     public function update(Reply $reply)
     {
         $this->authorize('update', $reply);
-        $this->validateReply();
-        $reply->update(request([ 'body' ]));
+
+        try {
+            $this->validateReply();
+            $reply->update(request([ 'body' ]));
+
+        } catch (\Exception $e) {
+            return response('Sorry, your reply could not be saved at this time.', 422);
+        }
+
 
     }
 
