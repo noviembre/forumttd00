@@ -13,17 +13,17 @@
             </div>
 
 
-
             <button
-                type="submit"
-                class="btn btn-primary"
-                @click="addReply">Post</button>
+                    type="submit"
+                    class="btn btn-primary"
+                    @click="addReply">Post
+            </button>
         </div>
 
 
         <p class="text-center" v-else>Please
-        <a href="/login">Sign in</a>
-        to participate in this discussion
+            <a href="/login">Sign in</a>
+            to participate in this discussion
         </p>
 
     </div>
@@ -38,7 +38,7 @@
             };
         },
 
-        computed:{
+        computed: {
             signedIn(){
                 return window.App.signedIn;
             }
@@ -47,7 +47,10 @@
         methods: {
             addReply(){
                 axios.post(location.pathname + '/replies', {body: this.body})
-                    .then(({data}) =>{
+                    .catch(error => {
+                        flash(error.response.data, 'danger');
+                    })
+                    .then(({data}) => {
                         this.body = '';
 
                         flash('Your reply has been posted');
