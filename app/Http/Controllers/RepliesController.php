@@ -43,11 +43,8 @@ class RepliesController extends Controller
             'user_id' => auth()->id()
         ]);
 
-        if ( request()->expectsJson() ) {
-            return $reply->load('owner');
-        }
+        return $reply->load('owner');
 
-        return back()->with('flash', 'Your reply has been left.');
     }
 
     /**
