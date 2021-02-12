@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Channel;
 use Illuminate\Filesystem\Cache;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -16,8 +17,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        if ( $this->app->isLocal() )
-        {
+        if ( $this->app->isLocal() ) {
             $this->app->register(\Barryvdh\Debugbar\ServiceProvider::class);
         }
     }
@@ -35,10 +35,11 @@ class AppServiceProvider extends ServiceProvider
         |--------------------------------------------------------------------------
         |se regreso a este codigo pq, al momento de migrar ocasionaba un error.
         */
-        \View::composer('*', function ($view)
-        {
+        \View::composer('*', function ($view) {
             $view->with('channels', Channel::all());
 
         });
+
+        Validator::extend('spamfree', 'App\Rules\SpamFree@passes');
     }
 }
