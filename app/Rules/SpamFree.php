@@ -32,6 +32,7 @@ class SpamFree implements Rule
      */
     public function message()
     {
-        return 'este msj no se muestra, por mas que yo quiera';
+        return 'The :attribute contains spam.';
+
     }
 }
