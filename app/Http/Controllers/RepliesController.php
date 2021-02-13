@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Reply;
 use App\Thread;
-use Illuminate\Http\Request;
 
 class RepliesController extends Controller
 {
@@ -33,10 +32,11 @@ class RepliesController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function store(Request $request,$channelId, Thread $thread)
+    public function store($channelId, Thread $thread)
     {
         try {
-            $this->validate($request, [ 'body' => 'required:spamfree' ]);
+//            $this->validate(request(), [ 'body' => 'required:spamfree' ]);
+            request()->validate([ 'body' => 'required:spamfree' ]);
 
             $reply = $thread->addReply([
                 'body'    => request('body'),
@@ -61,8 +61,8 @@ class RepliesController extends Controller
         $this->authorize('update', $reply);
 
         try {
-            request()->validate([ 'body' => 'required|spamfree' ]);
-            $this->validate(request(), [ 'body' => 'required|spamfree' ]);
+//            $this->validate(request(), [ 'body' => 'required:spamfree' ]);
+            request()->validate([ 'body' => 'required:spamfree' ]);
             $reply->update(request([ 'body' ]));
 
         } catch (\Exception $e) {

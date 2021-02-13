@@ -5,3 +5,7 @@
 * same thing like add a reply
 ## 53 Refactoring to custom validation
 #### Create and update a thread
+## 54 some issues were found. 
+ - after running full test
+ - It's not fixed yet.
+ 
