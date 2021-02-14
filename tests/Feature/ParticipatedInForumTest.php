@@ -118,16 +118,13 @@ class ParticipatedInForumTest extends TestCase
     {
         $this->signIn();
         $thread = create('App\Thread');
-        $reply = make('App\Reply', [
-            'body' => 'My fsimple reply.',
-        ]);
+        $reply = make('App\Reply');
 
         $this->post($thread->path() . '/replies', $reply->toArray())
-            ->assertStatus(200);
+            ->assertStatus(201);
 
         $this->post($thread->path() . '/replies', $reply->toArray())
-            ->assertStatus(422);
-
+            ->assertStatus(429);
     }
 
 }
