@@ -28,6 +28,9 @@ class ReplyPolicy
     {
         # get the last reply and let me know if were just published
         # but if were not published... fine, pass the authorization ..create one
-        return ! $user->lastReply->wasJustPublished();
+        $lastReply = $user->fresh()->lastReply();
+        if(! $lastReply) return true;
+
+        return ! $lastReply->wasJustPublished();
     }
 }
