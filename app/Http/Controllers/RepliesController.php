@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Forms\CreatePostForm;
+use App\Http\Requests\CreatePostRequest;
 use App\Reply;
-use App\Rules\SpamFree;
 use App\Thread;
 use Gate;
 
@@ -33,11 +32,11 @@ class RepliesController extends Controller
      *
      * @param $channelId
      * @param  \App\Thread $thread
-     * @param CreatePostForm $form
+     * @param CreatePostRequest $form
      * @return \Illuminate\Http\Response
      */
 
-    public function store($channelId, Thread $thread, CreatePostForm $form)
+    public function store($channelId, Thread $thread, CreatePostRequest $form)
     {
         if (Gate::denies('create', new Reply)){
             return response('You are posting too frecuently. Please Take a break.', 429);

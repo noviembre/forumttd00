@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Forms;
+namespace App\Http\Requests;
 
 use App\Rules\SpamFree;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreatePostForm extends FormRequest
+class CreatePostRequest extends FormRequest
 {
 
     /**
