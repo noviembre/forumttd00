@@ -42,13 +42,11 @@ class RepliesController extends Controller
             return response('You are posting too frecuently. Please Take a break.', 429);
         }
 
-            $reply = $thread->addReply([
+            return $thread->addReply([
                 'body'    => request('body'),
                 'user_id' => auth()->id()
-            ]);
-
-
-        return $reply->load('owner');
+            ])->load('owner');
+        
     }
 
 
