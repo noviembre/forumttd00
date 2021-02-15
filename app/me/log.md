@@ -10,5 +10,9 @@
     - a user can only reply once per minute. (Finally working)...
     - ...but with status code 201, however tutor perform with 200.
     - Full test: Not Ok (a_reply_requires_a_body)
-
- 
+## 55 a_reply_requires_a_body
+ - a compared Jeffrey way repository with mine,(all models) and I'm still having this issue.
+ - I tried.that's it. no more searchings.
+ - perhap I'll fix it  next time I do this course.
+## 55.b PostRequestForm
+    - from start you'll realize that your test is no doing well like the tutor video, however I had to go github laracast project repo and check what were in the commits, and it works. now is working like a charm
