@@ -48,9 +48,7 @@ class RepliesController extends Controller
 
         preg_match_all('/\@([^\s\.]+)/', $reply->body, $matches);
 
-        $names = $matches[ 1 ];
-
-        foreach ($names as $name) {
+        foreach ($matches[ 1 ] as $name) {
             $user = User::whereName($name)->first();
 
             if ( $user ) {
