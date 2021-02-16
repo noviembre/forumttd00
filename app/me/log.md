@@ -23,6 +23,10 @@
    - Call methods correctly please.
    - Type correctly also please.
    ## 56. Mention users
-   
+   ### 56.1 Mentioned user working now
+   - you can mention a user when you are replying a thread.
+   - so far, you have to type like this in reply box: @Alina some text. (working)
+   - User Alina will get a notification (working)
+   - next it will be implement autocomplition.
    
    
