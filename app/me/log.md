@@ -33,4 +33,7 @@
    - sometimes the tutor change something in the code that it works for him but not for me. so obviusly I'm not going to change my code. that's what I have to report here.(I already done this, when I tray to list channels, but I dit not report.)
 ### 57.a Creating Events
  - I did it following the tutor steps.
- -
+## 58 
+#### 58.1 (Error) I found an error in the notification message after replying a thread.
+#### 58.2 Reply
+- now cancel button is working properly

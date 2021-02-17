@@ -23,11 +23,13 @@
         </div>
         <div class="card-body">
             <div v-if="editing">
-                <div class="form-group">
-                    <textarea class="form-control" v-model="body"></textarea>
-                </div>
-                <button class="btn btn-info btn-sm" @click="update">Update</button>
-                <button class="btn btn-link btn-sm" @click="editing = false">Cancel</button>
+                <form @submit="update">
+                    <div class="form-group">
+                        <textarea class="form-control" v-model="body" required></textarea>
+                    </div>
+                    <button class="btn btn-info btn-sm">Update</button>
+                    <button class="btn btn-link btn-sm" @click="editing = false" type="button">Cancel</button>
+                </form>
 
             </div>
 
