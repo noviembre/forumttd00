@@ -34,7 +34,7 @@ class ReplyTest extends TestCase
     /** @test */
     function it_can_detect_all_mentioned_users_in_the_body()
     {
-        $reply = create('App\Reply', [
+        $reply = new \App\Reply ([
             'body' => '@JaneDoe wants to talk to @JohnDoe',
         ]);
 
