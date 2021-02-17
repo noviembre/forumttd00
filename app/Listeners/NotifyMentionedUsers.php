@@ -10,28 +10,19 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 
 class NotifyMentionedUsers
 {
-    /**
-     * Create the event listener.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
 
     /**
      * Handle the event.
      *
-     * @param  ThreadReceivedNewReply  $event
+     * @param  ThreadReceivedNewReply $event
      * @return void
      */
     public function handle(ThreadReceivedNewReply $event)
     {
 
-        preg_match_all('/\@([^\s\.]+)/', $event->reply->body, $matches);
+        $mentionedUsers = $event->reply->mentionedUsers();
 
-        foreach ($matches[ 1 ] as $name) {
+        foreach ($mentionedUsers as $name) {
             $user = User::whereName($name)->first();
 
             if ( $user ) {
