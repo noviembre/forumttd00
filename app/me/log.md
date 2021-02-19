@@ -39,5 +39,5 @@
 - now cancel button is working properly
 ## 61 User name auto completion
  - install dependencies: npm install at.js --save
- 
+ - npm install jquery.caret --save
  
