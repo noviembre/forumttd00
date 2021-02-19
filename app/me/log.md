@@ -40,4 +40,13 @@
 ## 61 User name auto completion
  - install dependencies: npm install at.js --save
  - npm install jquery.caret --save
+### 61.a username completion is working well but... 
+- there is some issues when you are trying to mention a user. I mean this is the name of the user Alanis Morissette, now when I am tagging or mention her. I press @ala, appers the name I press enter, and the autocompletion works. but when I press the button submit to reply the thread, I can see my answer but the name is @Ala however the user name is Alanis. 
+- why this happens? because you forget add a period (.), after naming some friend.
+#### 61.b User don't receive a notification when they are mentioned.
+- I don't know why this is happening.
+#### 61.c Idea:
+- when I'm taking some of this courses it would be a good idea if a the same course parallel. I mean for instance if today I taking and I completed the lesson 23. tomorrow in stead of take the lesson 24, I'll take the lesson 23 again.  why? first, for some practice. second, for check if in the current lesson I made mistakes or perhaps, they are project bugs (talking about error 61.a) 
+
+
  
