@@ -8,6 +8,10 @@
                     <div class="card-header">
                         <h2>{{ $profileUser->name }}</h2>
                     </div>
+
+                    @can ('update', $profileUser)
+                        ADD FORM HERE
+                    @endcan
                 </div>
 
                 @forelse($activities as $date => $activity)
