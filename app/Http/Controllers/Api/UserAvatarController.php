@@ -9,10 +9,17 @@ class UserAvatarController extends Controller
 {
 
 
-    public function store()
+    public function store(Request $request)
     {
-        request()->validate([
-            'avatar' => [ 'required', 'image' ],
+
+        $request->validate([
+
+            'avatar' => 'required'
+
+        ]);
+
+        auth()->user()->update([
+            'avatar_path' => $request->file('avatar')->storeAs('avatars', 'avatar.jpg', 'public')
         ]);
     }
 }
