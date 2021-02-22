@@ -11,6 +11,8 @@ class UserAvatarController extends Controller
 
     public function store()
     {
-
+        request()->validate([
+            'avatar' => [ 'required', 'image' ],
+        ]);
     }
 }
