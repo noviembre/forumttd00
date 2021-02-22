@@ -47,6 +47,13 @@
 - I don't know why this is happening.
 #### 61.c Idea:
 - when I'm taking some of this courses it would be a good idea if a the same course parallel. I mean for instance if today I taking and I completed the lesson 23. tomorrow in stead of take the lesson 24, I'll take the lesson 23 again.  why? first, for some practice. second, for check if in the current lesson I made mistakes or perhaps, they are project bugs (talking about error 61.a) 
-
+### 63. Image Validation Error:
+- there are some issues with 2 testing methods:
+    - a_user_may_add_an_avatar_to_their_profile
+    - a_valid_avatar_must_be_provided
+- this both methods are complicated to figure it out, between both methods are sharing problems.
+#### 63.a Image Validation (temp solution)
+ - there is just one method which is not ok(a_valid_avatar_must_be_provided). Lets see what happens.
+ 
 
  
