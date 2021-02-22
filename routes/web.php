@@ -65,4 +65,4 @@ Route::get('api/users', 'Api\UsersController@index');
 
 #-----------  User Avatar  -------------------------
 Route::post('api/users/{user}/avatar', 'Api\UserAvatarController@store')
-    ->middleware('auth');
+    ->middleware('auth')->name('avatar');

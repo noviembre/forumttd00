@@ -10,8 +10,16 @@
                     </div>
 
                     @can ('update', $profileUser)
-                        ADD FORM HERE
+                        <form method="post" action="{{ route('avatar', $profileUser) }}" enctype="multipart/form-data">
+                            @csrf
+
+                            <input type="file" name="avatar">
+                            <button type="submit" class="btn btn-primary">Add Avatar</button>
+
+                        </form>
                     @endcan
+
+                    <img src="{{ asset($profileUser->avatar_path) }}" width="150" height="150" title="hola">
                 </div>
 
                 @forelse($activities as $date => $activity)

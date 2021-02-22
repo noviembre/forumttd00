@@ -54,6 +54,8 @@
 - this both methods are complicated to figure it out, between both methods are sharing problems.
 #### 63.a Image Validation (temp solution)
  - there is just one method which is not ok(a_valid_avatar_must_be_provided). Lets see what happens.
+### 64. Profile user Image is not working.
+- I have to save manually to public/avatars/ folder
  
 
  
