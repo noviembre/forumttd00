@@ -39,11 +39,11 @@ class AddAvatarTest extends TestCase
         Storage::fake('public');
 
         $this->json('POST', 'api/users/' . auth()->id() . '/avatar', [
-            'avatar' => UploadedFile::fake()->image('avatar.jpg')
+            'avatar' => $file = UploadedFile::fake()->image('avatar.jpg')
         ]);
 
 
-        Storage::disk('public')->assertExists('avatars/avatar.jpg');
+        Storage::disk('public')->assertExists('avatars/'. $file->hashName());
 
 
     }

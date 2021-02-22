@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -12,14 +13,14 @@ class UserAvatarController extends Controller
     public function store(Request $request)
     {
 
-        $request->validate([
 
-            'avatar' => 'required'
+        Validator::make($request->only('avatar'), [
+            'avatar' => 'required|image',
 
         ]);
 
-        auth()->user()->update([
-            'avatar_path' => $request->file('avatar')->storeAs('avatars', 'avatar.jpg', 'public')
+        \auth::user()->update([
+            'avatar_path' => $request->file('avatar')->store('avatars', 'public')
         ]);
     }
 }
