@@ -72,8 +72,9 @@ class User extends Authenticatable
     }
 
 
-    public function avatar()
+    public function getAvatarPathAttribute($avatar)
     {
-        return asset($this->avatar_path ?: 'avatars/default.png');
+        // if the user has no img return default img
+        return asset($avatar ?: 'avatars/default.png');
     }
 }
