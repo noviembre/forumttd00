@@ -10,6 +10,7 @@ class UserAvatarController extends Controller
 {
 
 
+
     public function store(Request $request)
     {
 
