@@ -16,7 +16,7 @@ class UserAvatarController extends Controller
 
 
         Validator::make($request->only('avatar'), [
-            'avatar' => 'required|image',
+            'avatar' => ['required','image'],
 
         ]);
 
