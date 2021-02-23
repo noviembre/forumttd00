@@ -36,7 +36,7 @@ class AddAvatarTest extends TestCase
     {
         $this->signIn();
 
-        Storage::fake('disco');
+        Storage::fake('public');
 
         $this->json('POST', 'api/users/' . auth()->id() . '/avatar', [
             'avatar' => $file = UploadedFile::fake()->image('avatar.jpg')
@@ -46,7 +46,7 @@ class AddAvatarTest extends TestCase
 
 
         # moving image to a path
-        Storage::disk('disco')->assertExists('avatars/' . $file->hashName());
+        Storage::disk('public')->assertExists('avatars/' . $file->hashName());
 
 
     }

@@ -59,4 +59,5 @@
 - so far everything (javascript) is working but the aupload image is not working yet. you have to do manually. if you do works. 
 
 #### 66.a Image Validation Working
-- now you can upload an image, and this user image can be display from user profile and thread page.
+- OK. now you can upload an image, and this user image can be display from user profile and thread page.
+- FAIL. a_valid_avatar_must_be_provided is the unique method that's not working (in it test file)
