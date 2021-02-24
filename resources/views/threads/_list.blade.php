@@ -36,6 +36,12 @@
         <div class="card-body">
             {{ $thread->body }}
         </div>
+
+
+        <div class="card-footer">
+            {{ $thread->visits() }} views
+        </div>
+
     </div>
 @empty
     <p>Therere not relevant results at time</p>

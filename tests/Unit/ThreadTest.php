@@ -120,7 +120,7 @@ class ThreadTest extends TestCase
         $this->signIn();
         $thread = create('App\Thread');
 
-        tap(auth()->user(),function($user) use ($thread){
+        tap(auth()->user(), function ($user) use ($thread) {
             $this->assertTrue($thread->hasUpdatesFor($user));
 
             // simulate that the user visited the thread
@@ -128,6 +128,22 @@ class ThreadTest extends TestCase
             $this->assertFalse($thread->hasUpdatesFor($user));
         });
 
+
+    }
+
+    /** @test */
+    function a_thread_records_each_visit()
+    {
+        $thread = make('App\Thread', [ 'id' => 1 ]);
+
+        $thread->resetVisits();
+        $this->assertSame(0, $thread->visits());
+
+        $thread->recordVisit();
+        $this->assertEquals(1, $thread->visits());
+
+        $thread->recordVisit();
+        $this->assertEquals(2, $thread->visits());
 
     }
 

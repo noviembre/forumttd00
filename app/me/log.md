@@ -63,3 +63,5 @@
 - FAIL. a_valid_avatar_must_be_provided is the unique method that's not working (in it test file)
 ### 66. Trending threads with redis (ok)
 - Completed Successfully.
+### 68. Thread Views Design 1 (ok)
+- Completed Successfully.
