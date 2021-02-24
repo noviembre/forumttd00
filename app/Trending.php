@@ -21,7 +21,7 @@ class Trending
         ]));
     }
 
-    protected function cacheKey()
+    public function cacheKey()
     {
         return app()->environment('testing') ? 'testing_trending_threads' : 'trending_threads';
     }
