@@ -14,7 +14,15 @@
 
                     </div>
                     <div class="card-body">
-
+                        <ul>
+                        @foreach ($trending as $thread)
+                            <li>
+                            <a href="{{ url($thread->path) }}">
+                                {{$thread->title}}
+                            </a>
+                            </li>
+                        @endforeach
+                        </ul>
                     </div>
 
                 </div>
