@@ -8,6 +8,7 @@ use App\Rules\SpamFree;
 use App\Thread;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 
 class ThreadsController extends Controller
 {
@@ -27,8 +28,7 @@ class ThreadsController extends Controller
     public function index(Channel $channel, ThreadFilters $filters)
     {
         $threads = $this->getThreads($channel, $filters);
-        if ( request()->wantsJson() )
-        {
+        if ( request()->wantsJson() ) {
             return $threads;
         }
 
@@ -54,12 +54,11 @@ class ThreadsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => ['required', new SpamFree],
-            'body' => ['required', new SpamFree],
+            'title'      => [ 'required', new SpamFree ],
+            'body'       => [ 'required', new SpamFree ],
             'channel_id' => 'required|exists:channels,id'
 
         ]);
-
 
 
         $thread = Thread::create([
@@ -81,9 +80,14 @@ class ThreadsController extends Controller
      */
     public function show($channel, Thread $thread)
     {
-        if (auth()->check()){
+        if ( auth()->check() ) {
             auth()->user()->read($thread);
         }
+
+        Redis::zincrby('trending_threads', 1, json_encode([
+            'title' => $thread->title,
+            'path'  => $thread->path()
+        ]));
 
         return view('threads.show', compact('thread'));
     }
@@ -122,8 +126,7 @@ class ThreadsController extends Controller
         $this->authorize('update', $thread);
 
         $thread->delete();
-        if ( request()->wantsJson() )
-        {
+        if ( request()->wantsJson() ) {
             return response([], 204);
         }
         return redirect('/threads');
@@ -137,8 +140,7 @@ class ThreadsController extends Controller
     protected function getThreads(Channel $channel, ThreadFilters $filters)
     {
         $threads = Thread::latest()->filter($filters);
-        if ( $channel->exists )
-        {
+        if ( $channel->exists ) {
             $threads->where('channel_id', $channel->id);
         }
         return $threads->paginate(15);
