@@ -32,9 +32,8 @@ class ThreadsController extends Controller
             return $threads;
         }
 
-        $trending = collect(Redis::zrevrange('trending_threads',0, -1))->map(function ($thread){
-            return json_decode($thread);
-        });
+        $trending = array_map('json_decode',Redis::zrevrange('trending_threads',0, 4));
+
 
         return view('threads.index', compact('threads','trending'));
     }
