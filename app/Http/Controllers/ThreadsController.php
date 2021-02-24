@@ -7,6 +7,7 @@ use App\Filters\ThreadFilters;
 use App\Rules\SpamFree;
 use App\Thread;
 
+use App\Trending;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 
@@ -23,19 +24,21 @@ class ThreadsController extends Controller
      * Display a listing of the resource.
      *
      * @param Channel $channel
+     * @param ThreadFilters $filters
+     * @param Trending $trending
      * @return \Illuminate\Http\Response
      */
-    public function index(Channel $channel, ThreadFilters $filters)
+    public function index(Channel $channel, ThreadFilters $filters, Trending $trending)
     {
         $threads = $this->getThreads($channel, $filters);
         if ( request()->wantsJson() ) {
             return $threads;
         }
 
-        $trending = array_map('json_decode',Redis::zrevrange('trending_threads',0, 4));
-
-
-        return view('threads.index', compact('threads','trending'));
+        return view('threads.index', [
+            'threads' => $threads,
+            'trending' => $trending->get(),
+        ]);
     }
 
     /**
