@@ -9,7 +9,7 @@ use App\Thread;
 
 use App\Trending;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redis;
+
 
 class ThreadsController extends Controller
 {
@@ -80,20 +80,19 @@ class ThreadsController extends Controller
 
     /**
      * Display the specified resource.
-     * @param  $channel
+     * @param $channel
      * @param  \App\Thread $thread
+     * @param Trending $trending
      * @return \Illuminate\Http\Response
      */
-    public function show($channel, Thread $thread)
+    public function show($channel, Thread $thread, Trending $trending)
     {
         if ( auth()->check() ) {
             auth()->user()->read($thread);
         }
 
-        Redis::zincrby('trending_threads', 1, json_encode([
-            'title' => $thread->title,
-            'path'  => $thread->path()
-        ]));
+        $trending->push($thread);
+
 
         return view('threads.show', compact('thread'));
     }
