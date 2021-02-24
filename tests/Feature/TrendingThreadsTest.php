@@ -28,9 +28,8 @@ class TrendingThreadsTest extends TestCase
         $thread = create('App\Thread');
         $this->call('GET', $thread->path());
 
-        $trending = $this->trending->get();
 
-        $this->assertCount(1, $trending);
+        $this->assertCount(1, $trending = $this->trending->get());
 
         $this->assertEquals($thread->title, $trending[0]->title);
 
