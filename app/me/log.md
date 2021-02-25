@@ -65,3 +65,6 @@
 - Completed Successfully.
 ### 68. Thread Views Design 1 (ok)
 - Completed Successfully.
+### 70. Thread Views without Redis (ok)
+- Completed Successfully.
+- Using old School Tecniques.
