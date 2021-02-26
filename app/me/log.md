@@ -77,3 +77,4 @@
     - d. after you confirm you email, now you can create a thread.
 ### 73. confirm their mail Address (Successfuly completed)
     now when there is a invalid token it will detect and i'll show a message.
+### 74. confirm their mail Address (Successfuly completed 100%)
