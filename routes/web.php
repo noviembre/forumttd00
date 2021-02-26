@@ -56,6 +56,7 @@ Route::delete('/profiles/{user}/notifications/{notification}', 'UserNotification
 
 Route::get('/profiles/{user}/notifications', 'UserNotificationsController@index');
 
+Route::get('/register/confirm', 'Api\RegisterConfirmationController@index')->name('register.confirm');
 
 #============================================
 #  Searching

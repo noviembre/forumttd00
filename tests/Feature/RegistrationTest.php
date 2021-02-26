@@ -31,9 +31,9 @@ class RegistrationTest extends TestCase
         Mail::fake();
 
         $this->post(route('register'), [
-            'name' => 'John',
-            'email' => 'john@example.com',
-            'password' => 'password',
+            'name'                  => 'John',
+            'email'                 => 'john@example.com',
+            'password'              => 'password',
             'password_confirmation' => 'password'
         ]);
 
@@ -41,6 +41,9 @@ class RegistrationTest extends TestCase
 
         $this->assertFalse($user->confirmed);
         $this->assertNotNull($user->confirmation_token);
+
+        $this->get('/register/confirm?token=' . $user->confirmation_token);
+        $this->assertTrue($user->fresh()->confirmed);
 
     }
 }
