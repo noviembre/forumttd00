@@ -25,7 +25,7 @@ class RegistrationTest extends TestCase
             'password_confirmation' => 'password'
         ]);
 
-        Mail::assertSent(PleaseConfirmYourEmail::class);
+        Mail::assertQueued(PleaseConfirmYourEmail::class);
     }
 
     /** @test */
@@ -45,9 +45,10 @@ class RegistrationTest extends TestCase
         $this->assertFalse($user->confirmed);
         $this->assertNotNull($user->confirmation_token);
 
-        $response = $this->get('/register/confirm?token=' . $user->confirmation_token);
+        $this->get(route('register.confirm', [ 'token' => $user->confirmation_token ]))
+            ->assertRedirect(route('threads'));
+
         $this->assertTrue($user->fresh()->confirmed);
-        $response->assertRedirect('/threads');
 
     }
 }

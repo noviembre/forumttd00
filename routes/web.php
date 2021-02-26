@@ -17,7 +17,7 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/threads','ThreadsController@index');
+Route::get('/threads','ThreadsController@index')->name('threads');
 Route::get('/threads/create','ThreadsController@create');
 Route::post('/threads', 'ThreadsController@store')->middleware('must-be-confirmed');
 
@@ -56,6 +56,7 @@ Route::delete('/profiles/{user}/notifications/{notification}', 'UserNotification
 
 Route::get('/profiles/{user}/notifications', 'UserNotificationsController@index');
 
+#--------- register a user --------
 Route::get('/register/confirm', 'Api\RegisterConfirmationController@index')->name('register.confirm');
 
 #============================================
