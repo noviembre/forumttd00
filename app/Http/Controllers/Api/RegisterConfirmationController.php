@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 
 class RegisterConfirmationController extends Controller
 {
+
     /**
      * Confirm a user's email address.
      *
@@ -18,6 +19,9 @@ class RegisterConfirmationController extends Controller
         $user = User::where('confirmation_token', request('token'))
             ->firstOrFail()
             ->confirm();
+
+        return redirect('/threads')
+            ->with('flash', 'Your account is now confirm! you may post to the forum');
 
 
     }
