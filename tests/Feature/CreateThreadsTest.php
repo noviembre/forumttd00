@@ -12,7 +12,7 @@ class CreateThreadsTest extends TestCase
     use DatabaseMigrations;
 
     /** @test */
-    public function guests_may_not_create_threads()
+    function guests_may_not_create_threads()
     {
         $this->withExceptionHandling();
 
@@ -24,16 +24,20 @@ class CreateThreadsTest extends TestCase
     }
 
     /** @test */
-    function authenticated_users_must_first_confirm_their_email_address_before_creating_threads()
+    function new_users_must_first_confirm_their_email_address_before_creating_threads()
     {
-        $this->publishThread()
+        $user = factory('App\User')->states('unconfirmed')->create();
+        $this->signIn($user);
+        $thread = make('App\Thread');
+
+        $this->post('/threads', $thread->toArray())
             ->assertRedirect('/threads')
             ->assertSessionHas('flash', 'You must first confirm your email address');
     }
 
 
     /** @test */
-    public function an_authenticated_user_can_create_new_forum_threads()
+    function a_user_can_create_new_forum_threads()
     {
         // Given we have a signed user
         $this->signIn();
@@ -95,7 +99,7 @@ class CreateThreadsTest extends TestCase
     {
         $this->signIn();
 
-        $thread = create('App\Thread',['user_id'=> auth()->id()]);
+        $thread = create('App\Thread', [ 'user_id' => auth()->id() ]);
         $reply = create('App\Reply', [ 'thread_id' => $thread->id ]);
 
         $response = $this->json('DELETE', $thread->path());
