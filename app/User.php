@@ -36,6 +36,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
+        'confirmed'         => 'boolean',
         'email_verified_at' => 'datetime',
     ];
 
@@ -75,7 +76,16 @@ class User extends Authenticatable
 
     public function getAvatarPathAttribute($avatar)
     {
-        return  asset( Storage::url($avatar ?: 'avatars/default.png'));
+        return asset(Storage::url($avatar ?: 'avatars/default.png'));
     }
 
+    /**
+     * Mark the user's account as confirmed.
+     */
+    public function confirm()
+    {
+        $this->confirmed = true;
+
+        $this->save();
+    }
 }
