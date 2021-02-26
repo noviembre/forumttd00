@@ -7,7 +7,7 @@ use Illuminate\Auth\Events\Registered;
 
 use Illuminate\Support\Facades\Mail;
 
-class SendEmailConfirmationRquest
+class SendEmailConfirmationRequest
 {
     /**
      * Create the event listener.

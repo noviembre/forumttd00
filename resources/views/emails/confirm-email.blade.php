@@ -1,10 +1,10 @@
 @component('mail::message')
-# Introduction
+# One last step
 
-The body of your message.
+We just need to confirm your email address to prove your are human. you get it, right ?
 
-@component('mail::button', ['url' => ''])
-Button Text
+@component('mail::button', ['url' => '#'])
+Confirm Email
 @endcomponent
 
 Thanks,<br>
