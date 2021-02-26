@@ -4,10 +4,7 @@ namespace Tests\Feature;
 
 use App\Mail\PleaseConfirmYourEmail;
 use App\User;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
@@ -20,7 +17,13 @@ class RegistrationTest extends TestCase
     function a_confirmation_email_is_sent_upon_registration()
     {
         Mail::fake();
-        event(new Registered(create('App\User')));
+//        event(new Registered(create('App\User')));
+        $this->post(route('register'), [
+            'name'                  => 'John',
+            'email'                 => 'john@example.com',
+            'password'              => 'password',
+            'password_confirmation' => 'password'
+        ]);
 
         Mail::assertSent(PleaseConfirmYourEmail::class);
     }
