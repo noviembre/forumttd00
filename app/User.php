@@ -82,10 +82,10 @@ class User extends Authenticatable
     /**
      * Mark the user's account as confirmed.
      */
-    public function confirm()
-    {
-        $this->confirmed = true;
-
-        $this->save();
-    }
+//    public function confirm()
+//    {
+//        $this->confirmed = true;
+//
+//        $this->save();
+//    }
 }

@@ -68,3 +68,5 @@
 ### 70. Thread Views without Redis (ok)
 - Completed Successfully.
 - Using old School Tecniques.
+### 72. Confirm their email address
+- I was stucked minutes here. I thought I did n't make it. 

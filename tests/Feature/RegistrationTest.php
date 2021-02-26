@@ -40,6 +40,7 @@ class RegistrationTest extends TestCase
         $user = User::whereName('John')->first();
 
         $this->assertFalse($user->confirmed);
+        $this->assertNotNull($user->confirmation_token);
 
     }
 }
