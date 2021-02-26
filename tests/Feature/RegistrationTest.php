@@ -51,4 +51,12 @@ class RegistrationTest extends TestCase
         $this->assertTrue($user->fresh()->confirmed);
 
     }
+
+    /** @test */
+    function confirming_an_invalid_token()
+    {
+        $this->get(route('register.confirm', [ 'token' => 'invalid' ]))
+            ->assertRedirect(route('threads'))
+            ->assertSessionHas('flash', 'Unknown Token.');
+    }
 }

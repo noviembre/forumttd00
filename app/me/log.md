@@ -75,3 +75,5 @@
     - b. create a thread. you wont be able because you have to confirm your email first (a notification will tell you).
     - c. when you confirm you email (a notification will tell you)
     - d. after you confirm you email, now you can create a thread.
+### 73. confirm their mail Address (Successfuly completed)
+    now when there is a invalid token it will detect and i'll show a message.
