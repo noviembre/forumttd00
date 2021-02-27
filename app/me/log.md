@@ -78,3 +78,6 @@
 ### 73. confirm their mail Address (Successfuly completed)
     now when there is a invalid token it will detect and i'll show a message.
 ### 74. confirm their mail Address (Successfuly completed 100%)
+### 76 Thread Should Have a Unique Slug (100% Ok)
+    everytime a new thread with existing slug is created, a number will be added.
+    sample(my-new-thread-2,my-new-thread-3, etc) 

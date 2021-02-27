@@ -6,6 +6,7 @@ use App\Events\ThreadHasNewReply;
 use App\Events\ThreadReceivedNewReply;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Thread extends Model
 {
 
@@ -27,8 +28,7 @@ class Thread extends Model
          *  When a thread is deleting
          *  I want to delete its replies in the process.
          */
-        static::deleting(function ($thread)
-        {
+        static::deleting(function ($thread) {
             $thread->replies->each->delete();
         });
 
@@ -144,4 +144,28 @@ class Thread extends Model
         return 'slug';
     }
 
+
+
+    public function setSlugAttribute($value)
+    {
+        if (static::whereSlug($slug = str_slug($value))->exists()) {
+            $slug = $this->incrementSlug($slug);
+        }
+
+        $this->attributes['slug'] = $slug;
+    }
+
+
+    protected function incrementSlug($slug)
+    {
+        $max = static::whereTitle($this->title)->latest('id')->value('slug');
+
+        if (is_numeric($max[-1])) {
+            return preg_replace_callback('/(\d+)$/', function ($matches) {
+                return $matches[1] + 1;
+            }, $max);
+        }
+
+        return "{$slug}-2";
+    }
 }
