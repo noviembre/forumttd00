@@ -38,7 +38,7 @@ class Thread extends Model
     {
         #--- this method works with a_thread_can_make_a_string_path
         # (Thread.ft.Test 1/2)
-        return "/threads/{$this->channel->slug}/{$this->id}";
+        return "/threads/{$this->channel->slug}/{$this->slug}";
     }
 
     public function replies()
