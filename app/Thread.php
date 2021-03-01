@@ -157,7 +157,6 @@ class Thread extends Model
             $slug = "{$slug}-" . $this->id;
         }
 
-        var_dump($slug);
 
         $this->attributes[ 'slug' ] = $slug;
     }
