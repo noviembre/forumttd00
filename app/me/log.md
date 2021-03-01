@@ -81,3 +81,9 @@
 ### 76 Thread Should Have a Unique Slug (100% Ok)
     everytime a new thread with existing slug is created, a number will be added.
     sample(my-new-thread-2,my-new-thread-3, etc) 
+    
+### dejo esto por si falla redis
+https://laracasts.com/discuss/channels/general-discussion/class-predisclient-not-found
+ahi esta como vovler a instalar
+### 77 More about slug.
+    New situation: for example,  title="He is number 24", therefore slug="he-is-number-24". we wont want to make that "he-is-number-25". how do make it be "he-is-number-24-1"

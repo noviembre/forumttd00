@@ -86,16 +86,10 @@ class CreateThreadsTest extends TestCase
     /** @test */
     function a_thread_requires_a_unique_slug()
     {
-//        $this->signIn();
-//        $thread = create('App\Thread', [ 'title' => 'Foo Title', 'slug' => 'foo-title' ]);
-//
-//        $this->assertEquals($thread->fresh()->slug, 'foo-title');
-//        $this->post(route('threads'), $thread->toArray());
-//
-//        $this->assertTrue(Thread::whereSlug('foo-title-2')->exists());
+
         $this->signIn();
 
-        $thread = create('App\Thread', ['title' => 'Foo Title', 'slug' => 'foo-title']);
+        $thread = create('App\Thread', [ 'title' => 'Foo Title', 'slug' => 'foo-title' ]);
 
         $this->assertEquals($thread->fresh()->slug, 'foo-title');
 
@@ -106,6 +100,15 @@ class CreateThreadsTest extends TestCase
         $this->post(route('threads'), $thread->toArray());
 
         $this->assertTrue(Thread::whereSlug('foo-title-3')->exists());
+    }
+
+    /** @test */
+    function a_thread_with_a_title_that_ends_in_a_number_should_generate_the_proper_slug()
+    {
+        $this->signIn();
+        $thread = create('App\Thread', [ 'title' => 'Some Title 24', 'slug' => 'some-title-24' ]);
+        $this->post(route('threads'), $thread->toArray());
+        $this->assertTrue(Thread::whereSlug('some-title-24-2')->exists());
     }
 
     /** @test */
