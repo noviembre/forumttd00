@@ -5,6 +5,7 @@ namespace App;
 use App\Events\ThreadHasNewReply;
 use App\Events\ThreadReceivedNewReply;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 
 class Thread extends Model
@@ -31,7 +32,9 @@ class Thread extends Model
         static::deleting(function ($thread) {
             $thread->replies->each->delete();
         });
-
+        static::created(function ($thread) {
+            $thread->update([ 'slug' => $thread->title ]);
+        });
     }
 
     public function path()
@@ -147,22 +150,14 @@ class Thread extends Model
 
     public function setSlugAttribute($value)
     {
-        if ( static::whereSlug($slug = str_slug($value))->exists() ) {
-            $slug = $this->incrementSlug($slug);
+        $slug = Str::slug($value);
+        $original = $slug;
+        $count = 2;
+
+        while (static::whereSlug($slug)->exists()) {
+            $slug = "{$original}-" . $count ++;
         }
 
         $this->attributes[ 'slug' ] = $slug;
-    }
-
-
-    protected function incrementSlug($slug, $count = 2)
-    {
-        $original = $slug;
-
-        while (static::whereSlug($slug)->exists()) {
-            $slug = "{$original}-" . $count++;
-        }
-
-        return $slug;
     }
 }
