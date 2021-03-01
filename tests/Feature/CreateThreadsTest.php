@@ -3,7 +3,6 @@
 namespace Tests\Feature;
 
 use App\Activity;
-use App\Thread;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 
@@ -101,9 +100,10 @@ class CreateThreadsTest extends TestCase
     function a_thread_with_a_title_that_ends_in_a_number_should_generate_the_proper_slug()
     {
         $this->signIn();
-        $thread = create('App\Thread', [ 'title' => 'Some Title 24', 'slug' => 'some-title-24' ]);
-        $this->post(route('threads'), $thread->toArray());
-        $this->assertTrue(Thread::whereSlug('some-title-24-2')->exists());
+        $thread = create('App\Thread', [ 'title' => 'Some Title 24']);
+        $thread = $this->postJson(route('threads'), $thread->toArray())->json();
+        $this->assertEquals("some-title-24-{$thread['id']}", $thread['slug']);
+
     }
 
     /** @test */
