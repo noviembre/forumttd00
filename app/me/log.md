@@ -87,3 +87,5 @@ https://laracasts.com/discuss/channels/general-discussion/class-predisclient-not
 ahi esta como vovler a instalar
 ### 77 More about slug.
     New situation: for example,  title="He is number 24", therefore slug="he-is-number-24". we wont want to make that "he-is-number-25". how do make it be "he-is-number-24-1"
+### 78 Best Reply
+
