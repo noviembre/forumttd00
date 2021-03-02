@@ -153,11 +153,19 @@ class Thread extends Model
         $slug = Str::slug($value);
 
 
-        if (static::whereSlug($slug)->exists()) {
+        if ( static::whereSlug($slug)->exists() ) {
             $slug = "{$slug}-" . $this->id;
         }
 
 
         $this->attributes[ 'slug' ] = $slug;
+    }
+
+    public function markBestReply(Reply $reply)
+    {
+        $this->best_reply_id = $reply->id;
+        $this->save();
+
+        $this->update([ 'best_reply_id' => $reply->id ]);
     }
 }
