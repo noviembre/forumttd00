@@ -39,10 +39,15 @@
         </div>
 
         <!--@can('update',$reply)-->
-        <div class="card-footer level" v-if="canUpdate">
-            <button class="btn btn-info btn-sm mr-1" @click="editing = true">Edit</button>
-            <button class="btn btn-danger btn-sm mr-1" @click="destroy">Delete</button>
-            <button class="btn btn-warning btn-sm ml-a" @click="markBestReply">Best Reply?</button>
+        <div class="card-footer level">
+            <div v-if="canUpdate">
+                <button class="btn btn-info btn-sm mr-1" @click="editing = true">Edit</button>
+                <button class="btn btn-danger btn-sm mr-1" @click="destroy">Delete</button>
+            </div>
+
+            <button class="btn btn-warning btn-sm ml-a"
+                    @click="markBestReply"
+                    v-show="! isBest">Best Reply?</button>
 
 
         </div>
