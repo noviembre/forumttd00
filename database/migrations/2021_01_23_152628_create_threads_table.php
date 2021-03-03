@@ -23,7 +23,7 @@ class CreateThreadsTable extends Migration
 
             $table->string('title');
             $table->text('body');
-            $table->unsignedInteger('best_reply_id')->nullable();
+            $table->unsignedBigInteger('best_reply_id')->nullable();
             $table->timestamps();
         });
     }
