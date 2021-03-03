@@ -30,7 +30,7 @@ Route::get('/threads/{channel}/{thread}/replies','RepliesController@index');
 Route::post('/threads/{channel}/{thread}/replies','RepliesController@store');
 
 #-----------  Delete Replies  -----------------
-Route::delete('/replies/{reply}','RepliesController@destroy');
+Route::delete('/replies/{reply}','RepliesController@destroy')->name('replies.destroy');
 
 #-----------  Thread Suscriptions
 Route::post('/threads/{channel}/{thread}/subscriptions', 'ThreadSubscriptionsController@store')

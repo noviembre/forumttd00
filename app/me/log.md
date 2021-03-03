@@ -86,6 +86,10 @@
 https://laracasts.com/discuss/channels/general-discussion/class-predisclient-not-found
 ahi esta como vovler a instalar
 ### 77 More about slug.
-    New situation: for example,  title="He is number 24", therefore slug="he-is-number-24". we wont want to make that "he-is-number-25". how do make it be "he-is-number-24-1"
-### 78 Best Reply
+    New situation: for example,  title="He is number 24", therefore slug="he-is-number-24". we wont want to make that "he-is-number-25". how do make it be "he-is-number-24-1".
+### 78 Best Reply.
 
+### 82 Best Reply features:
+- an anwers can be mark as best reply.
+- if you change your mind you can mark as best answer another reply.
+- if the answer is deleted, best_anwer_id is set null(on threads migration).
