@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 
@@ -11,7 +11,7 @@ use Tests\TestCase;
 class AddAvatarTest extends TestCase
 {
 
-    use DatabaseMigrations;
+    use DatabaseTransactions;
 
     /** @test */
     function only_members_can_add_avatars()

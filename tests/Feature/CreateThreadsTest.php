@@ -3,13 +3,13 @@
 namespace Tests\Feature;
 
 use App\Activity;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class CreateThreadsTest extends TestCase
 {
 
-    use DatabaseMigrations;
+    use DatabaseTransactions;
 
     /** @test */
     function guests_may_not_create_threads()

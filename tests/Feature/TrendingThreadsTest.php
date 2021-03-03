@@ -3,14 +3,14 @@
 namespace Tests\Feature;
 
 use App\Trending;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Redis;
 use Tests\TestCase;
 
 class TrendingThreadsTest extends TestCase
 {
 
-    use DatabaseMigrations;
+    use DatabaseTransactions;
 
     public function setUp(): void
     {

@@ -2,13 +2,13 @@
 
 namespace Tests\Feature;
 
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class FavoritesTest extends TestCase
 {
 
-    use DatabaseMigrations;
+    use DatabaseTransactions;
 
     /** @test */
     public function guest_cannot_favorited_anything()

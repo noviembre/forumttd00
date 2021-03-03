@@ -2,14 +2,13 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class ProfilesTest extends TestCase
 {
 
-    use DatabaseMigrations;
+    use DatabaseTransactions;
 
     //ByManu revisa la linea 19, ya que de el tiene 2 corchetes
 

@@ -2,13 +2,13 @@
 
 namespace Tests\Unit;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
 class UserTest extends TestCase
 {
 
-    use DatabaseMigrations;
+    use DatabaseTransactions;
 
     /** @test */
     public function a_user_can_fetch_their_most_recent_reply()

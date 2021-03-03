@@ -3,14 +3,14 @@
 namespace Tests\Unit;
 
 use App\Notifications\ThreadWasUpdated;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
 class ThreadTest extends TestCase
 {
 
-    use DatabaseMigrations;
+    use DatabaseTransactions;
     protected $thread;
 
     public function setUp(): void
