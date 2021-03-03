@@ -13,7 +13,7 @@
                 </h5>
 
 
-                <div v-if="signIn">
+                <div v-if="signedIn">
                     <favorite :reply="data"></favorite>
 
                 </div>
