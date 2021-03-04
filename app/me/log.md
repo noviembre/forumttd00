@@ -93,3 +93,5 @@ ahi esta como vovler a instalar
 - an anwers can be mark as best reply.
 - if you change your mind you can mark as best answer another reply.
 - if the answer is deleted, best_anwer_id is set null(on threads migration).
+- 83. best reply button can only seen by thread author.
+

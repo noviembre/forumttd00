@@ -47,7 +47,7 @@
 
             <button class="btn btn-warning btn-sm ml-a"
                     @click="markBestReply"
-                    v-show="! isBest">Best Reply?</button>
+                    v-if="authorize('owns', reply.thread)">Best Reply?</button>
 
 
         </div>
