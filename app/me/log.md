@@ -94,4 +94,5 @@ ahi esta como vovler a instalar
 - if you change your mind you can mark as best answer another reply.
 - if the answer is deleted, best_anwer_id is set null(on threads migration).
 - 83. best reply button can only seen by thread author.
-
+### 85.
+- I comment it out line n. 17 on TestCase, because everytime I make a test it failed.

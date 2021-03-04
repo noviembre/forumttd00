@@ -77,7 +77,7 @@ class ThreadsController extends Controller
         ]);
 
 
-        if (\request()->wantsJson()){
+        if ( \request()->wantsJson() ) {
             return response($thread, 201);
         }
 
@@ -106,16 +106,9 @@ class ThreadsController extends Controller
         return view('threads.show', compact('thread'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Thread $thread
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Thread $thread)
-    {
-        //
-    }
+
+
+
 
     /**
      * Update the specified resource in storage.
@@ -124,9 +117,13 @@ class ThreadsController extends Controller
      * @param  \App\Thread $thread
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Thread $thread)
+    public function update()
     {
-        //
+        if ( \request()->has('locked') ) {
+            if ( ! auth()->user()->isAdmin() ) {
+                return response('', 403);
+            }
+        }
     }
 
     /**

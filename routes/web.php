@@ -23,6 +23,9 @@ Route::post('/threads', 'ThreadsController@store')->middleware('must-be-confirme
 
 Route::get('threads/{channel}','ThreadsController@index');
 Route::get('/threads/{channel}/{thread}','ThreadsController@show');
+
+#--- Admin lock any Thread
+Route::patch('/threads/{channel}/{thread}','ThreadsController@update')->name('threads.update');
 Route::delete('/threads/{channel}/{thread}','ThreadsController@destroy');
 
 Route::get('/threads/{channel}/{thread}/replies','RepliesController@index');
