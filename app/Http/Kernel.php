@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\Administrator;
 use App\Http\Middleware\RedirectIfEmailNotConfirmed;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -63,6 +64,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         #-- Added by me
         'must-be-confirmed' => RedirectIfEmailNotConfirmed::class,
+        'admin'=> Administrator::class
     ];
 
     /**
