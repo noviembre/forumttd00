@@ -111,23 +111,6 @@ class ThreadsController extends Controller
 
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Thread $thread
-     * @return \Illuminate\Http\Response
-     */
-    public function update($channel, Thread $thread)
-    {
-        if ( \request()->has('locked') ) {
-            if ( ! auth()->user()->isAdmin() ) {
-                return response('', 403);
-            }
-
-            $thread->lock();
-        }
-    }
-
-    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Thread $thread
