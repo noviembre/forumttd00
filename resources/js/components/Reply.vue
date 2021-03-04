@@ -40,7 +40,7 @@
 
         <!--@can('update',$reply)-->
         <div class="card-footer level">
-            <div v-if="authorize('updateReply', reply)">
+            <div v-if="authorize('owns', reply)">
                 <button class="btn btn-info btn-sm mr-1" @click="editing = true">Edit</button>
                 <button class="btn btn-danger btn-sm mr-1" @click="destroy">Delete</button>
             </div>
