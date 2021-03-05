@@ -96,3 +96,6 @@ ahi esta como vovler a instalar
 - 83. best reply button can only seen by thread author.
 ### 85.
 - I comment it out line n. 17 on TestCase, because everytime I make a test it failed.
+### 86 Administrator may lock any thread
+- the name of admin must be unique.
+- only the admin can see the button Lock 
