@@ -92,6 +92,7 @@ class User extends Authenticatable
 
     public function isAdmin()
     {
+        // default administrator
         return in_array($this->name, [ 'JohnDoe', 'JaneDoe' ]);
     }
 }
