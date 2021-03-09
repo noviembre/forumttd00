@@ -119,6 +119,22 @@ class CreateThreadsTest extends TestCase
     }
 
     /** @test */
+    function unauthorized_users_may_not_update_threads()
+    {
+
+        $this->withExceptionHandling();
+        $this->signIn();
+
+        $thread = create('App\Thread', [ 'user_id' => create('App\User')->id ]);
+
+        $this->patch($thread->path(), [
+            'title' => 'changed'
+        ])->assertStatus(403);
+
+    }
+
+
+    /** @test */
     function a_thread_requires_a_title_and_body_to_be_updated()
     {
 
