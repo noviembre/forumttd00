@@ -92,7 +92,7 @@ class CreateThreadsTest extends TestCase
         $this->assertEquals($thread->fresh()->slug, 'foo-title');
 
         $thread = $this->postJson(route('threads'), $thread->toArray())->json();
-        $this->assertEquals("foo-title-{$thread['id']}", $thread['slug']);
+        $this->assertEquals("foo-title-{$thread['id']}", $thread[ 'slug' ]);
 
     }
 
@@ -100,9 +100,9 @@ class CreateThreadsTest extends TestCase
     function a_thread_with_a_title_that_ends_in_a_number_should_generate_the_proper_slug()
     {
         $this->signIn();
-        $thread = create('App\Thread', [ 'title' => 'Some Title 24']);
+        $thread = create('App\Thread', [ 'title' => 'Some Title 24' ]);
         $thread = $this->postJson(route('threads'), $thread->toArray())->json();
-        $this->assertEquals("some-title-24-{$thread['id']}", $thread['slug']);
+        $this->assertEquals("some-title-24-{$thread['id']}", $thread[ 'slug' ]);
 
     }
 
@@ -116,6 +116,21 @@ class CreateThreadsTest extends TestCase
 
         $this->signIn();
         $this->delete($thread->path())->assertStatus(403);
+    }
+
+    /** @test */
+    function a_thread_can_be_updated()
+    {
+        $this->signIn();
+        $thread = create('App\Thread', [ 'user_id' => auth()->id() ]);
+        $this->patchJson($thread->path(), [
+            'title' => 'changed',
+            'body'  => 'changed body',
+        ]);
+
+        $thread = $thread->fresh();
+        $this->assertEquals('changed', $thread->title);
+        $this->assertEquals('changed body', $thread->body);
     }
 
     /** @test */

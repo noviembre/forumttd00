@@ -19,10 +19,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/threads','ThreadsController@index')->name('threads');
 Route::get('/threads/create','ThreadsController@create');
+
 Route::post('/threads', 'ThreadsController@store')->middleware('must-be-confirmed');
 
 Route::get('threads/{channel}','ThreadsController@index');
 Route::get('/threads/{channel}/{thread}','ThreadsController@show');
+Route::patch('/threads/{channel}/{thread}','ThreadsController@update');
 
 #--- Admin lock any Thread
 Route::patch('/threads/{channel}/{thread}','ThreadsController@update')->name('threads.update');

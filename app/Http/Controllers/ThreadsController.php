@@ -106,8 +106,14 @@ class ThreadsController extends Controller
         return view('threads.show', compact('thread'));
     }
 
-
-
+    /**
+     * @param $channel
+     * @param Thread $thread
+     */
+    public function update($channel, Thread $thread)
+    {
+        $thread->update(\request([ 'title', 'body' ]));
+    }
 
 
     /**
