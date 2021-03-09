@@ -112,7 +112,11 @@ class ThreadsController extends Controller
      */
     public function update($channel, Thread $thread)
     {
-        $thread->update(\request([ 'title', 'body' ]));
+
+        $thread->update(\request()->validate([
+            'title' => [ 'required', new SpamFree ],
+            'body'  => [ 'required', new SpamFree ],
+        ]));
     }
 
 
