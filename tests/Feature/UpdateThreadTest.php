@@ -24,9 +24,7 @@ class UpdateThreadTest extends TestCase
 
         $thread = create('App\Thread', [ 'user_id' => create('App\User')->id ]);
 
-        $this->patch($thread->path(), [
-            'title' => 'changed'
-        ])->assertStatus(403);
+        $this->patch($thread->path(), [])->assertStatus(403);
 
     }
 
