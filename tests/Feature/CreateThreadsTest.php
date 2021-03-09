@@ -128,9 +128,11 @@ class CreateThreadsTest extends TestCase
             'body'  => 'changed body',
         ]);
 
-        $thread = $thread->fresh();
-        $this->assertEquals('changed', $thread->title);
-        $this->assertEquals('changed body', $thread->body);
+        tap($thread->fresh(), function ($thread) {
+            $this->assertEquals('changed', $thread->title);
+            $this->assertEquals('changed body', $thread->body);
+        });
+
     }
 
     /** @test */
