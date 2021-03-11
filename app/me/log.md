@@ -99,3 +99,6 @@ ahi esta como vovler a instalar
 ### 86 Administrator may lock any thread
 - the name of admin must be unique.
 - only the admin can see the button Lock 
+### WYSIWYG
+    part 1: ok (working)
+    part 2: ?
