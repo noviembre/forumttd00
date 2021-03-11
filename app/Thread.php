@@ -177,5 +177,14 @@ class Thread extends Model
         $this->update([ 'best_reply_id' => $reply->id ]);
     }
 
-
+    /**
+     * Access the body attribute.
+     *
+     * @param  string $body
+     * @return string
+     */
+    public function getBodyAttribute($body)
+    {
+        return \Purify::clean($body);
+    }
 }

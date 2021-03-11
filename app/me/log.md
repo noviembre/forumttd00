@@ -102,3 +102,6 @@ ahi esta como vovler a instalar
 ### 99,100 WYSIWYG
     part 1: ok (working)
     part 2: ok (working)
+### 101 Sanitizing
+    testing (ok)
+    working (ok)
